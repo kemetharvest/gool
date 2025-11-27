@@ -8,47 +8,51 @@ export function LeaguesPage() {
   const [leagues, setLeagues] = useState<League[]>([]);
   const [loading, setLoading] = useState(true);
 
-  // Mock matches data
+  // Mock matches data (conforms to `Match` type)
   const mockMatches: Match[] = [
     {
       id: 'match1',
       homeTeam: { id: 'team1', name: 'Al Ahly', nameAr: 'الأهلي', logo: '🔴', country: 'Egypt' },
       awayTeam: { id: 'team2', name: 'Zamalek', nameAr: 'الزمالك', logo: '⚪', country: 'Egypt' },
       league: { id: 'league1', name: 'Egyptian Premier League', nameAr: 'الدوري المصري', logo: 'https://flagcdn.com/w160/eg.png' },
-      date: new Date(2025, 10, 27, 20, 0),
-      status: 'upcoming',
-      homeScore: null,
-      awayScore: null,
+      kickoffTime: new Date(2025, 10, 27, 20, 0).toISOString(),
+      status: 'scheduled',
+      homeScore: 0,
+      awayScore: 0,
+      minute: 0,
     },
     {
       id: 'match2',
       homeTeam: { id: 'team3', name: 'Barcelona', nameAr: 'برشلونة', logo: '🔵', country: 'Spain' },
       awayTeam: { id: 'team4', name: 'Real Madrid', nameAr: 'ريال مدريد', logo: '⚪', country: 'Spain' },
       league: { id: 'league2', name: 'La Liga', nameAr: 'الدوري الإسباني', logo: 'https://flagcdn.com/w160/es.png' },
-      date: new Date(2025, 10, 27, 19, 30),
-      status: 'upcoming',
-      homeScore: null,
-      awayScore: null,
+      kickoffTime: new Date(2025, 10, 27, 19, 30).toISOString(),
+      status: 'scheduled',
+      homeScore: 0,
+      awayScore: 0,
+      minute: 0,
     },
     {
       id: 'match3',
       homeTeam: { id: 'team5', name: 'Manchester United', nameAr: 'مانشستر يونايتد', logo: '🔴', country: 'England' },
       awayTeam: { id: 'team6', name: 'Liverpool', nameAr: 'ليفربول', logo: '❤️', country: 'England' },
       league: { id: 'league3', name: 'Premier League', nameAr: 'الدوري الإنجليزي', logo: 'https://flagcdn.com/w160/gb.png' },
-      date: new Date(2025, 10, 27, 15, 0),
-      status: 'live',
+      kickoffTime: new Date(2025, 10, 27, 15, 0).toISOString(),
+      status: 'inprogress',
       homeScore: 2,
       awayScore: 1,
+      minute: 67,
     },
     {
       id: 'match4',
       homeTeam: { id: 'team7', name: 'Bayern Munich', nameAr: 'بايرن ميونخ', logo: '🔴', country: 'Germany' },
       awayTeam: { id: 'team8', name: 'PSG', nameAr: 'باريس سان جيرمان', logo: '🔵', country: 'France' },
       league: { id: 'league4', name: 'Champions League', nameAr: 'دوري الأبطال', logo: 'https://flagcdn.com/w160/eu.png' },
-      date: new Date(2025, 10, 27, 21, 0),
-      status: 'upcoming',
-      homeScore: null,
-      awayScore: null,
+      kickoffTime: new Date(2025, 10, 27, 21, 0).toISOString(),
+      status: 'scheduled',
+      homeScore: 0,
+      awayScore: 0,
+      minute: 0,
     },
   ];
 
@@ -277,7 +281,7 @@ export function LeaguesPage() {
         </motion.div>
       </div>
 
-      <style jsx>{`
+      <style>{`
         .bg-pattern {
           background-image: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
           background-size: 20px 20px;
